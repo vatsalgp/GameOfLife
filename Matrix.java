@@ -5,7 +5,7 @@ import java.util.Random;
 public class Matrix {
     public boolean[][] matrix;
 
-    public Matrix(int size) {
+    public Matrix(final int size) {
         matrix = new boolean[size][size];
     }
 
@@ -13,37 +13,17 @@ public class Matrix {
         return matrix.length;
     }
 
-    public void init(long seed) {
-        int size = getSize();
-        Random random = new Random(seed);
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                matrix[i][j] = random.nextBoolean();
-    }
-
     public void init() {
-        int size = getSize();
-        Random random = new Random();
+        final int size = getSize();
+        final Random random = new Random();
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 matrix[i][j] = random.nextBoolean();
-    }
-
-    public void print() {
-        for (boolean[] arr : matrix) {
-            for (boolean ele : arr) {
-                if (ele)
-                    System.out.print("O");
-                else
-                    System.out.print(" ");
-            }
-            System.out.println();
-        }
     }
 
     public int getAlive() {
         int count = 0;
-        int size = getSize();
+        final int size = getSize();
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 if (matrix[i][j])
