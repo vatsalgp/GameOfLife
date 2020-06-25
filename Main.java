@@ -7,13 +7,12 @@ public class Main {
 
     final private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         int size = scanner.nextInt();
-        long seed = scanner.nextLong();
-        int m = scanner.nextInt();
+        int iterations = scanner.nextInt();
         Matrix matrix = new Matrix(size);
-        matrix.init(seed);
-        for (int i = 0; i < m; i++)
+        matrix.init();
+        for (int i = 0; i < iterations; i++)
             matrix = Universe.next(matrix);
         matrix.print();
     }
@@ -33,6 +32,14 @@ class Matrix {
     void init(long seed) {
         int size = getSize();
         Random random = new Random(seed);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                matrix[i][j] = random.nextBoolean();
+    }
+
+    void init() {
+        int size = getSize();
+        Random random = new Random();
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 matrix[i][j] = random.nextBoolean();
