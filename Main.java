@@ -1,84 +1,21 @@
 package life;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
-    final private static Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        final Scanner scanner = new Scanner(System.in);
         int size = scanner.nextInt();
-        int iterations = scanner.nextInt();
+        scanner.close();
         Matrix matrix = new Matrix(size);
         matrix.init();
-        for (int i = 0; i < iterations; i++)
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Generation #" + i);
+            System.out.println("Alive: " + matrix.getAlive());
+            matrix.print();
             matrix = Universe.next(matrix);
-        matrix.print();
-    }
-}
-
-class Matrix {
-    boolean[][] matrix;
-
-    Matrix(int size) {
-        matrix = new boolean[size][size];
-    }
-
-    int getSize() {
-        return matrix.length;
-    }
-
-    void init(long seed) {
-        int size = getSize();
-        Random random = new Random(seed);
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                matrix[i][j] = random.nextBoolean();
-    }
-
-    void init() {
-        int size = getSize();
-        Random random = new Random();
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                matrix[i][j] = random.nextBoolean();
-    }
-
-    void print() {
-        for (boolean[] arr : matrix) {
-            for (boolean ele : arr) {
-                if (ele)
-                    System.out.print("O");
-                else
-                    System.out.print(" ");
-            }
+            Thread.sleep(500);
             System.out.println();
         }
-    }
-}
-
-class Universe {
-    public static Matrix next(Matrix in) {
-        int size = in.getSize();
-        Matrix out = new Matrix(size);
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                int NoOfAliveNeighbours = getAliveNeighbours(in, i, j);
-                out.matrix[i][j] = NoOfAliveNeighbours == 3 || NoOfAliveNeighbours == 2 && in.matrix[i][j];
-            }
-        }
-        return out;
-    }
-
-    public static int getAliveNeighbours(Matrix m, int x, int y) {
-        int count = 0;
-        int size = m.getSize();
-        for (int i = -1; i <= 1; i++)
-            for (int j = -1; j <= 1; j++)
-                if (!(i == 0 && j == 0))
-                    if (m.matrix[(x + i + size) % size][(y + j + size) % size])
-                        count++;
-        return count;
     }
 }
