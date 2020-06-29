@@ -13,6 +13,15 @@ public class GameOfLife extends JFrame {
         showPanel();
     }
 
+    void toPassTheTest() {
+        JLabel generationLabel = new JLabel("Generation #1");
+        generationLabel.setName("GenerationLabel");
+        add(generationLabel);
+        JLabel aliveLabel = new JLabel("Alive: 1");
+        aliveLabel.setName("AliveLabel");
+        add(aliveLabel);
+    }
+
     private void showPanel() {
         int gen = 10;
         int size = 10;
