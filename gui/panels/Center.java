@@ -1,17 +1,17 @@
-package life;
+package life.gui.panels;
 
+import life.core.Matrix;
 import javax.swing.*;
-
 import java.awt.*;
 
-public class CenterPanel extends JPanel {
+public class Center extends JPanel {
     private static final long serialVersionUID = -2192278565339242054L;
 
-    public CenterPanel(Matrix matrix) {
-        int size = matrix.getSize();
+    public Center(final Matrix matrix) {
+        final int size = matrix.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                JPanel cell = new JPanel();
+                final JPanel cell = new JPanel();
                 cell.setBackground(matrix.matrix[i][j] ? Color.BLACK : Color.WHITE);
                 add(cell);
             }

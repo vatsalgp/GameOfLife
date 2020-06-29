@@ -1,6 +1,6 @@
-package life;
+package life.core;
 
-class Universe {
+public class Universe {
     public static Matrix next(final Matrix in) {
         final int size = in.getSize();
         final Matrix out = new Matrix(size);

@@ -1,4 +1,4 @@
-package life;
+package life.core;
 
 import java.util.Random;
 

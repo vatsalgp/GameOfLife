@@ -1,11 +1,18 @@
 package life;
 
+import life.core.Matrix;
+import life.core.Universe;
+import life.gui.Main;
 import javax.swing.*;
 
-public class GameOfLife extends JFrame {
+public class GUI extends JFrame {
     private static final long serialVersionUID = 9145501200064594952L;
 
-    public GameOfLife() {
+    public static void main(final String[] args) {
+        new GUI();
+    }
+
+    private GUI() {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 600);
@@ -14,12 +21,12 @@ public class GameOfLife extends JFrame {
     }
 
     private void showPanel() {
-        int gen = 10;
-        int size = 10;
+        final int gen = 10;
+        final int size = 10;
         Matrix matrix = new Matrix(size);
         matrix.init();
         for (int i = 1; i <= gen; i++) {
-            JPanel panel = new MainPanel(i, matrix);
+            final JPanel panel = new Main(i, matrix);
             add(panel);
             revalidate();
             sleep();
@@ -31,7 +38,7 @@ public class GameOfLife extends JFrame {
     private void sleep() {
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
         }
     }
 }
