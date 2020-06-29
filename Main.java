@@ -1,31 +1,7 @@
 package life;
 
-import java.util.Scanner;
-
 public class Main {
-    public static void main(final String[] args) throws Exception {
-        final Scanner scanner = new Scanner(System.in);
-        final int size = scanner.nextInt();
-        scanner.close();
-        Matrix matrix = new Matrix(size);
-        matrix.init();
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("Generation #" + i);
-            print(matrix);
-            matrix = Universe.next(matrix);
-            Thread.sleep(500);
-        }
-    }
-
-    public static void print(final Matrix m) {
-        System.out.println("Alive: " + m.getAlive());
-        for (final boolean[] arr : m.matrix) {
-            for (final boolean ele : arr) {
-                final char ch = ele ? 'O' : ' ';
-                System.out.print(ch);
-            }
-            System.out.println();
-        }
-        System.out.println();
+    public static void main(final String[] args) {
+        new GameOfLife();
     }
 }
