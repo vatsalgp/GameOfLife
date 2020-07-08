@@ -9,6 +9,10 @@ public class Matrix {
         matrix = new boolean[size][size];
     }
 
+    public Matrix() {
+        this(10);
+    }
+
     public int getSize() {
         return matrix.length;
     }

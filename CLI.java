@@ -1,27 +1,20 @@
 package life;
 
-import java.util.Scanner;
-import life.core.Matrix;
-import life.core.Universe;
+import life.core.*;
 
 public class CLI {
-    public static void main(final String[] args) throws Exception {
-        final Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Size: ");
-        final int size = scanner.nextInt();
-        scanner.close();
-        Matrix matrix = new Matrix(size);
+    public static void main(final String[] args) {
+        Matrix matrix = new Matrix();
         matrix.init();
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("Generation #" + i);
-            print(matrix);
+        while (true) {
+            printMatrix(matrix);
             matrix = Universe.next(matrix);
-            Thread.sleep(500);
+            Sleep.sleep();
         }
     }
 
-    public static void print(final Matrix m) {
-        System.out.println("Alive: " + m.getAlive());
+    private static void printMatrix(final Matrix m) {
+        printLimiter(m);
         for (final boolean[] arr : m.matrix) {
             for (final boolean ele : arr) {
                 final char ch = ele ? 'O' : ' ';
@@ -29,6 +22,12 @@ public class CLI {
             }
             System.out.println();
         }
+        printLimiter(m);
+    }
+
+    private static void printLimiter(final Matrix m) {
+        for (int i = 0; i < m.matrix.length; i++)
+            System.out.print("-");
         System.out.println();
     }
 }

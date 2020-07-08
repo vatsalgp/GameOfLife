@@ -1,18 +1,22 @@
 package life.gui;
 
 import life.core.Matrix;
-import life.gui.panels.Center;
-import life.gui.panels.North;
 import javax.swing.*;
-
 import java.awt.*;
 
 public class Main extends JPanel {
-    private static final long serialVersionUID = 5620334458224357720L;
+    private static final long serialVersionUID = 1;
 
-    public Main(final int i, final Matrix matrix) {
-        setLayout(new BorderLayout());
-        add(new North(i, matrix.getAlive()), BorderLayout.NORTH);
-        add(new Center(matrix), BorderLayout.CENTER);
+    public Main(final Matrix matrix) {
+        final int size = matrix.getSize();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                final JPanel cell = new JPanel();
+                cell.setBackground(matrix.matrix[i][j] ? Color.BLACK : Color.WHITE);
+                add(cell);
+            }
+        }
+        setBackground(Color.BLACK);
+        setLayout(new GridLayout(size, size, 1, 1));
     }
 }
